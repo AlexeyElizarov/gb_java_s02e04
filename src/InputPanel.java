@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class InputPanel {
 
@@ -21,26 +19,14 @@ public class InputPanel {
         panel.setLayout(new BorderLayout());
 
         this.textArea = textArea;
+
         this.inputField = new JTextField();
-
-        inputField.addKeyListener(new KeyAdapter() {
-                  @Override
-                  public void keyTyped(KeyEvent e) {
-                      super.keyTyped(e);
-                  }
-
-                  @Override
-                  public void keyPressed(KeyEvent e) {
-                      if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                          updateTextArea();
-                      }
-                  }
-
-                  @Override
-                  public void keyReleased(KeyEvent e) {
-                      super.keyReleased(e);
-                  }
-              });
+        inputField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateTextArea();
+            }
+        });
 
         JButton sendButton = new JButton("Send");
         sendButton.addActionListener(new ActionListener() {
